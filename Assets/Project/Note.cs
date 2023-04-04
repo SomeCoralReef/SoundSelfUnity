@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using FMODUnity;
 
 [System.Serializable]
 public class ADSR2
@@ -31,8 +30,6 @@ public class Note : MonoBehaviour
 
     //references
     private Action<Note> _onEndCallback;
-    //FMOD References
-    private FMOD.Studio.EventInstance _instance;
 
     public float NoteValue { get; private set; }
     
@@ -71,7 +68,6 @@ public class Note : MonoBehaviour
         
         _onEndCallback = onEndCallback;
 
-        InitializeFMOD(); //TODO 
         StartCoroutine(Spawn());
     }
 
@@ -87,16 +83,7 @@ public class Note : MonoBehaviour
         return false;
     }
 
-    private void InitializeFMOD()
-    {
-        //TODO: FMOD stuff here
-        _instance = FMODUnity.RuntimeManager.CreateInstance("event:/A-TONER");
-        _instance.start();
-        
-    }
     public void Update(){
-        _instance.setParameterByName("PitchOfTone", _pitch);
-        _instance.setParameterByName("Vol", _volume);
 
     }
 
