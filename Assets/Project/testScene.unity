@@ -303,7 +303,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1956642267}
-  - component: {fileID: 1956642266}
+  - component: {fileID: 1956642268}
   m_Layer: 0
   m_Name: GameObjectExample
   m_TagString: Untagged
@@ -311,21 +311,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1956642266
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1956642265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c392c91a12ecf6f4d8987edc419af5eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pitch_hz: 0
-  note_st: 0
-  imitoneState: 
 --- !u!4 &1956642267
 Transform:
   m_ObjectHideFlags: 0
@@ -341,3 +326,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1956642268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956642265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f86df9ee5a5df54b8d8885c4ac68685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pitch_hz: 0
+  note_st: 0
+  imitoneState: 
