@@ -7,8 +7,9 @@ public class FundamentalManager : MonoBehaviour
 {
     [SerializeField] private GameObject _fundamentalPrefab;
     public Action<Note> OnNewFundamentalSpawn;
-    
+
     public VoiceInterpreter _voiceInterpreter;
+    //public ExampleImitoneBehavior _voiceInterpreter;
     private HarmonyManager _harmonyManager;
 
     private List<Note> _fundamentals = new List<Note>();
@@ -30,6 +31,7 @@ public class FundamentalManager : MonoBehaviour
     private void Awake()
     {
         _voiceInterpreter = GetComponent<VoiceInterpreter>();
+        //_voiceInterpreter = GetComponent<ExampleImitoneBehavior>();
         _harmonyManager = GetComponent<HarmonyManager>();
         _voiceInterpreter.OnNewTone += HandleNewToning;
         _harmonyManager.OnSeriesEnd += MakeOffer;

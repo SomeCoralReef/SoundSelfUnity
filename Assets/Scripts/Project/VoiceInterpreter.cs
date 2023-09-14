@@ -5,7 +5,7 @@ using System.Linq;
 using B83.MathHelpers;
 using UnityEngine;
 
-[Serializable]
+/*[Serializable]
 public class Threshold
 {
     public float Upper { 
@@ -32,7 +32,7 @@ public class Threshold
     {
         _upper = _lower + _interval;
     }
-}
+}*/
 
 public class VoiceInterpreter : MonoBehaviour
 {
@@ -92,7 +92,7 @@ public class VoiceInterpreter : MonoBehaviour
     private float _dbValue;
     public float _pitchValue;
     [SerializeField] private float _pitchDifference = 3;
-
+    
 
     private void Awake()
     {
@@ -156,7 +156,7 @@ public class VoiceInterpreter : MonoBehaviour
     }
 
     
-    private float[] GetSpectrumData()
+   private float[] GetSpectrumData()
     {
         float[] samples = GetSampleData(SAMPLE_SIZE*2);
         
@@ -164,7 +164,7 @@ public class VoiceInterpreter : MonoBehaviour
         Complex[] result = FFT.CalculateFFT(fft, false);
         return FFT.Complex2Float(result, false);
     }
-    
+     
     private void GetPitch()
     {
         // Get sound Spectrum
