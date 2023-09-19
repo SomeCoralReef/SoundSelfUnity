@@ -82,8 +82,6 @@ public class ImitoneVoiceIntepreter: MonoBehaviour
     public Threshold NoiseLevel => _noiseLevel;
     
     private int _midiNote;
-    
-
     private bool _chanting;
     private float _cChantCharge;
      private float _rmsValue;
@@ -93,14 +91,10 @@ public class ImitoneVoiceIntepreter: MonoBehaviour
      private string _selectedDevice; 
      private int _sampleRate;
     private readonly float _referenceAmplitude = 20.0f * Mathf.Pow(10.0f, -6.0f);
-        [SerializeField] private AudioClip _audioClip;
+    [SerializeField] private AudioClip _audioClip;
     /*[Header("audio analysis")]
     
-    
     [SerializeField] private bool _useMicrophone = true;
-
-    
-    
    
     */
     [SerializeField] private float _pitchDifference = 3;
@@ -184,8 +178,6 @@ public class ImitoneVoiceIntepreter: MonoBehaviour
         Array.Resize(ref capturedInput, (inputBuffer.samples  +  micPosWrite - micPosRead) % inputBuffer.samples);
         if (capturedInput.Length > 0)
         {
-            
-       
             // Read the latest audio data, beginning from where we left off and wrapping around as needed.
             inputBuffer.GetData(capturedInput, micPosRead);
             micPosRead = (micPosRead + capturedInput.Length) % inputBuffer.samples;
@@ -197,20 +189,14 @@ public class ImitoneVoiceIntepreter: MonoBehaviour
                 foreach (float sample in capturedInput)
                     if (Math.Abs(sample) > peakAmplitude)
                         peakAmplitude = Math.Abs(sample);
-                        
-
                 //Debug.Log(String.Format("Analyzing mic samples x {0}, peak amplitude {1}", capturedInput.Length, peakAmplitude));
-
                 imitone.InputAudio(capturedInput);
-
                 imitoneState = imitone.GetState();
-
                 try
                 {
                     var data = new JSONObject(imitoneState);
                     
                     JSONObject tones = data["tones"];
-                    Debug.Log()
                     JSONObject notes = data["notes"];
                     if (!tones || !tones.isArray) throw new ArgumentException("imitone output did not include tones array.");
                     if (!notes || !notes.isArray) throw new ArgumentException("imitone output did not include notes array.");
@@ -260,7 +246,8 @@ public class ImitoneVoiceIntepreter: MonoBehaviour
 
 
      private void CheckToning(){
-        if(_dbValue > _noiseLevel.Upper)
+        //if(_dbValue > _noiseLevel.Upper)
+        if(pitch_hz > 0)
         {
             if (!Active)
             {
@@ -281,7 +268,8 @@ public class ImitoneVoiceIntepreter: MonoBehaviour
                 OnNewTone?.Invoke(_semitone);
             }
         }
-        else if (_dbValue < _noiseLevel.Lower)
+        else if (pitch_hz == 0) 
+        //(_dbValue < _noiseLevel.Lower)
         {
             if (Active)
             {

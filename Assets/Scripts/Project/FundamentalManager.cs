@@ -8,7 +8,7 @@ public class FundamentalManager : MonoBehaviour
     [SerializeField] private GameObject _fundamentalPrefab;
     public Action<Note> OnNewFundamentalSpawn;
 
-    public VoiceInterpreter _voiceInterpreter;
+    public ImitoneVoiceIntepreter _voiceInterpreter;
     //public ExampleImitoneBehavior _voiceInterpreter;
     private HarmonyManager _harmonyManager;
 
@@ -30,7 +30,8 @@ public class FundamentalManager : MonoBehaviour
     private float normalized_frequency;
     private void Awake()
     {
-        _voiceInterpreter = GetComponent<VoiceInterpreter>();
+        Debug.Log("happening");
+        _voiceInterpreter = GetComponent<ImitoneVoiceIntepreter>();
         //_voiceInterpreter = GetComponent<ExampleImitoneBehavior>();
         _harmonyManager = GetComponent<HarmonyManager>();
         _voiceInterpreter.OnNewTone += HandleNewToning;
@@ -68,6 +69,7 @@ public class FundamentalManager : MonoBehaviour
         {
             if (_voiceInterpreter.Active)
             {
+                Debug.Log("active and filling");
                 Debug.Log($"filling note at {fillTime}");
                 fillTime += (_fillRate) * Time.deltaTime;
             }
@@ -92,12 +94,11 @@ public class FundamentalManager : MonoBehaviour
     
     private void SpawnNewFundamental(float note)
     {
-        normalized_frequency = (_voiceInterpreter._pitchValue - 220) / (880 - 220);
+        normalized_frequency = (_voiceInterpreter.pitch_hz - 220) / (880 - 220);
         Note newNote = Instantiate(_fundamentalPrefab).GetComponent<Note>();
         //TODO: what is starting pitch/volume
         Debug.Log(normalized_frequency);
         newNote.Initialize(note: note, pitch: normalized_frequency, volume: 0 ,RemoveFromFundamentalList);
-
         OnNewFundamentalSpawn?.Invoke(newNote);
         HandleNewFundamental(newNote);
     }
@@ -121,7 +122,7 @@ public class FundamentalManager : MonoBehaviour
     {
         _offeredFundamental = Instantiate(_fundamentalPrefab).GetComponent<Note>();
         //TODO: what is starting pitch/volume
-        _offeredFundamental.Initialize(note: note, pitch: 0.5f, volume: 0/*, RemoveFromFundamentalList*/);
+        _offeredFundamental.Initialize(note: note, pitch: 0.5f, volume: 0, RemoveFromFundamentalList);
         
         //continue offer until reaching offerTime.
         float fillTime = 0;

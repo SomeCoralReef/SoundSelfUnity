@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(VoiceInterpreter))]
+[RequireComponent(typeof(ImitoneVoiceIntepreter))]
 [RequireComponent(typeof(FundamentalManager))]
 [RequireComponent(typeof(HarmonyManager))]
 [RequireComponent(typeof(AudioSource))]

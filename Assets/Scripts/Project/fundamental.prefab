@@ -41,9 +41,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 4368231981953033810}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f86df9ee5a5df54b8d8885c4ac68685, type: 3}
+  m_Script: {fileID: 11500000, guid: 48c84577f49c98a40b36932cc20bd40b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pitch_hz: 0
-  note_st: 0
-  imitoneState: 
+  _pitch: 0
+  _volume: 0
