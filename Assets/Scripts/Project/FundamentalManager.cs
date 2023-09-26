@@ -94,11 +94,11 @@ public class FundamentalManager : MonoBehaviour
     
     private void SpawnNewFundamental(float note)
     {
-        normalized_frequency = (_voiceInterpreter.pitch_hz - 220) / (880 - 220);
+        //normalized_frequency = (_voiceInterpreter.pitch_hz - 220) / (880 - 220);
         Note newNote = Instantiate(_fundamentalPrefab).GetComponent<Note>();
         //TODO: what is starting pitch/volume
         Debug.Log(normalized_frequency);
-        newNote.Initialize(note: note, pitch: normalized_frequency, volume: 0 ,RemoveFromFundamentalList);
+        newNote.Initialize(note: _voiceInterpreter.note_st, pitch: _voiceInterpreter.pitch_hz, volume: 0 ,RemoveFromFundamentalList);
         OnNewFundamentalSpawn?.Invoke(newNote);
         HandleNewFundamental(newNote);
     }
